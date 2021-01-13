@@ -53,20 +53,16 @@ class YourService
     
     public function doSomething(): void
     {
-        $response = $this->httpClient->request('GET', 'https://httpbin.org/get');
+        $response = $this->httpClient->request('POST', 'https://httpbin.org/post', [
+            'json' => ['name' => 'John Doe']
+        ]);
 
         $request = $this->httpClient->getRequestFromResponse($response);
 
-        /*
-          print_r($request) outputs:
-          
-          Setono\HttpClientBundle\HttpClient\Request\Request Object
-          (
-              [method:Setono\HttpClientBundle\HttpClient\Request\Request:private] => GET
-              [url:Setono\HttpClientBundle\HttpClient\Request\Request:private] => https://httpbin.org/get
-              [options:Setono\HttpClientBundle\HttpClient\Request\Request:private] => Array()
-          ) 
-          */
+        echo $request->asString();
+        
+        // Outputs:
+        // POST https://httpbin.org/post {"name":"John Doe"}
     }
 }
 ```
