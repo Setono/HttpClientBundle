@@ -48,6 +48,16 @@ final class RequestAwareHttpClient implements RequestAwareHttpClientInterface, R
         return $this->requests[spl_object_hash($response)] ?? null;
     }
 
+    public function getLastRequest(): ?Request
+    {
+        $lastRequest = end($this->requests);
+        if (false === $lastRequest) {
+            return null;
+        }
+
+        return $lastRequest;
+    }
+
     public function reset(): void
     {
         if ($this->decorated instanceof ResetInterface) {

@@ -19,4 +19,6 @@ interface RequestAwareHttpClientInterface extends HttpClientInterface
      * Returns the request associated with the given response. Returns null if no request matches
      */
     public function getRequestFromResponse(ResponseInterface $response): ?Request;
+
+    public function getLastRequest(): ?Request;
 }
