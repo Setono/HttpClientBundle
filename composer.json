@@ -15,6 +15,9 @@
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
         "symfony/http-client": "^4.4 || ^5.0",
+        "symfony/http-client-contracts": "^2.3",
+        "symfony/http-kernel": "^4.4 || ^5.1.5",
+        "symfony/service-contracts": "^2.2",
         "thecodingmachine/safe": "^1.0",
         "webmozart/assert": "^1.1"
     },
