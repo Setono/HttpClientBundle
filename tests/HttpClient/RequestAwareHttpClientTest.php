@@ -15,14 +15,17 @@ final class RequestAwareHttpClientTest extends TestCase
      */
     public function it_saves_requests(): void
     {
+        $options = ['json' => ['name' => 'John Doe']];
+
         $httpClient = new RequestAwareHttpClient(HttpClient::create());
-        $response = $httpClient->request('GET', 'https://httpbin.org/get');
+        $response = $httpClient->request('POST', 'https://httpbin.org/post', $options);
 
         $request = $httpClient->getRequestFromResponse($response);
 
         self::assertNotNull($request);
-        self::assertSame('GET', $request->getMethod());
-        self::assertSame('https://httpbin.org/get', $request->getUrl());
-        self::assertSame([], $request->getOptions());
+        self::assertSame('POST', $request->getMethod());
+        self::assertSame('https://httpbin.org/post', $request->getUrl());
+        self::assertSame($options, $request->getOptions());
+        self::assertSame('POST https://httpbin.org/post {"name":"John Doe"}', $request->asString());
     }
 }
