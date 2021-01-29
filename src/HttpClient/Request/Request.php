@@ -6,6 +6,7 @@ namespace Setono\HttpClientBundle\HttpClient\Request;
 
 use function Safe\json_encode;
 use function Safe\sprintf;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final class Request
 {
@@ -14,6 +15,8 @@ final class Request
     private string $url;
 
     private array $options;
+
+    private ?ResponseInterface $response = null;
 
     public function __construct(string $method, string $url, array $options)
     {
@@ -35,6 +38,16 @@ final class Request
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function getResponse(): ?ResponseInterface
+    {
+        return $this->response;
+    }
+
+    public function setResponse(ResponseInterface $response): void
+    {
+        $this->response = $response;
     }
 
     public function asString(): string

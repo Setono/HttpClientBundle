@@ -16,6 +16,8 @@ final class RequestAwareHttpClient implements RequestAwareHttpClientInterface, R
 {
     private HttpClientInterface $decorated;
 
+    private ?Request $lastRequest = null;
+
     /** @var array<string, Request> */
     private array $requests = [];
 
@@ -26,9 +28,13 @@ final class RequestAwareHttpClient implements RequestAwareHttpClientInterface, R
 
     public function request(string $method, string $url, array $options = []): ResponseInterface
     {
+        $this->lastRequest = new Request($method, $url, $options);
+
         $response = $this->decorated->request($method, $url, $options);
 
-        $this->requests[spl_object_hash($response)] = new Request($method, $url, $options);
+        $this->lastRequest->setResponse($response);
+
+        $this->requests[spl_object_hash($response)] = $this->lastRequest;
 
         return $response;
     }
@@ -50,12 +56,7 @@ final class RequestAwareHttpClient implements RequestAwareHttpClientInterface, R
 
     public function getLastRequest(): ?Request
     {
-        $lastRequest = end($this->requests);
-        if (false === $lastRequest) {
-            return null;
-        }
-
-        return $lastRequest;
+        return $this->lastRequest;
     }
 
     public function reset(): void
@@ -64,6 +65,7 @@ final class RequestAwareHttpClient implements RequestAwareHttpClientInterface, R
             $this->decorated->reset();
         }
 
+        $this->lastRequest = null;
         $this->requests = [];
     }
 
