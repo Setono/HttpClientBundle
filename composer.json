@@ -1,8 +1,8 @@
 {
     "name": "setono/http-client-bundle",
-    "type": "symfony-bundle",
     "description": "A Symfony bundle that decorates the http client with request logging",
     "license": "MIT",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Joachim Løvgaard",
@@ -15,7 +15,6 @@
         "psr/log": "^1.1",
         "symfony/config": "^4.4 || ^5.4 || ^6.0",
         "symfony/dependency-injection": "^4.4 || ^5.4 || ^6.0",
-        "symfony/http-client": "^4.4 || ^5.4 || ^6.0",
         "symfony/http-client-contracts": "^2.3",
         "symfony/http-kernel": "^4.4 || ^5.4 || ^6.0",
         "symfony/service-contracts": "^2.2"
@@ -25,19 +24,7 @@
         "roave/security-advisories": "dev-latest",
         "setono/code-quality-pack": "^2.2"
     },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "phpstan/extension-installer": false,
-            "ergebnis/composer-normalize": true,
-            "dealerdirect/phpcodesniffer-composer-installer": false
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Setono\\HttpClientBundle\\": "src/"
@@ -48,7 +35,18 @@
             "Setono\\HttpClientBundle\\Tests\\": "tests/"
         }
     },
-    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "scripts": {
         "analyse": "psalm",
         "check-style": "ecs check",
