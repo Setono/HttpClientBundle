@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\HttpClientBundle\HttpClient\Request;
 
-use function Safe\json_encode;
-use function Safe\sprintf;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 final class Request
@@ -63,7 +61,10 @@ final class Request
         }
 
         if (isset($this->getOptions()['json'])) {
-            $body = json_encode($this->getOptions()['json'], \JSON_HEX_TAG | \JSON_HEX_APOS | \JSON_HEX_AMP | \JSON_HEX_QUOT | \JSON_PRESERVE_ZERO_FRACTION);
+            $body = json_encode(
+                $this->getOptions()['json'],
+                \JSON_THROW_ON_ERROR | \JSON_HEX_TAG | \JSON_HEX_APOS | \JSON_HEX_AMP | \JSON_HEX_QUOT | \JSON_PRESERVE_ZERO_FRACTION
+            );
         }
 
         return sprintf('%s %s %s', $this->getMethod(), $this->getUrl(), $body);
