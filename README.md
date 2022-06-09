@@ -1,7 +1,6 @@
 # Symfony HTTP Client Bundle
 
 [![Latest Version][ico-version]][link-packagist]
-[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
 
@@ -68,7 +67,6 @@ class YourService
 ```
 
 [ico-version]: https://poser.pugx.org/setono/http-client-bundle/v/stable
-[ico-unstable-version]: https://poser.pugx.org/setono/http-client-bundle/v/unstable
 [ico-license]: https://poser.pugx.org/setono/http-client-bundle/license
 [ico-github-actions]: https://github.com/Setono/HttpClientBundle/workflows/build/badge.svg
 
