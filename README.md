@@ -4,6 +4,8 @@
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
 
+**USE https://github.com/Setono/request-aware-http-client INSTEAD**
+
 This bundle will decorate Symfonys HTTP client and make it possible to retrieve full requests for debugging etc.
 
 ## Installation
